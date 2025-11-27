@@ -5,10 +5,10 @@ import { AuthService } from '../../core/services/auth.service';
 import { User, UserRole } from '../../models/user.model';
 
 @Component({
-    selector: 'app-main-layout',
-    standalone: true,
-    imports: [CommonModule, RouterModule],
-    template: `
+  selector: 'app-main-layout',
+  standalone: true,
+  imports: [CommonModule, RouterModule],
+  template: `
     <div class="main-layout">
       <aside class="sidebar" [class.collapsed]="sidebarCollapsed">
         <div class="sidebar-header">
@@ -62,6 +62,13 @@ import { User, UserRole } from '../../models/user.model';
               }
             </a>
           }
+
+          <a routerLink="/client" class="nav-item" target="_blank">
+            <span class="icon">📱</span>
+            @if (!sidebarCollapsed) {
+              <span>Interface Client</span>
+            }
+          </a>
         </nav>
 
         <div class="sidebar-footer">
@@ -96,7 +103,7 @@ import { User, UserRole } from '../../models/user.model';
       </div>
     </div>
   `,
-    styles: [`
+  styles: [`
     .main-layout {
       display: flex;
       min-height: 100vh;
@@ -254,28 +261,28 @@ import { User, UserRole } from '../../models/user.model';
   `]
 })
 export class MainLayoutComponent implements OnInit {
-    sidebarCollapsed = false;
-    currentUser: User | null = null;
-    isAdmin = false;
+  sidebarCollapsed = false;
+  currentUser: User | null = null;
+  isAdmin = false;
 
-    constructor(
-        private authService: AuthService,
-        private router: Router
-    ) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
-    ngOnInit(): void {
-        this.authService.currentUser.subscribe(user => {
-            this.currentUser = user;
-            this.isAdmin = user?.role === UserRole.ADMIN;
-        });
-    }
+  ngOnInit(): void {
+    this.authService.currentUser.subscribe(user => {
+      this.currentUser = user;
+      this.isAdmin = user?.role === UserRole.ADMIN;
+    });
+  }
 
-    toggleSidebar(): void {
-        this.sidebarCollapsed = !this.sidebarCollapsed;
-    }
+  toggleSidebar(): void {
+    this.sidebarCollapsed = !this.sidebarCollapsed;
+  }
 
-    logout(): void {
-        this.authService.logout();
-        this.router.navigate(['/login']);
-    }
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }

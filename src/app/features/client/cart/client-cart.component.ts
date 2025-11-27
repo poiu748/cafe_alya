@@ -6,10 +6,10 @@ import { OrderService } from '../../../core/services/order.service';
 import { OrderType } from '../../../models/order.model';
 
 @Component({
-    selector: 'app-client-cart',
-    standalone: true,
-    imports: [CommonModule],
-    template: `
+  selector: 'app-client-cart',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
     <div class="cart-container">
       <h2>Votre Panier</h2>
 
@@ -52,7 +52,7 @@ import { OrderType } from '../../../models/order.model';
       }
     </div>
   `,
-    styles: [`
+  styles: [`
     .cart-container {
       max-width: 800px;
       margin: 0 auto;
@@ -168,39 +168,51 @@ import { OrderType } from '../../../models/order.model';
   `]
 })
 export class ClientCartComponent {
-    constructor(
-        public cartService: CartService,
-        private orderService: OrderService,
-        private router: Router
-    ) { }
+  constructor(
+    public cartService: CartService,
+    private orderService: OrderService,
+    private router: Router
+  ) { }
 
-    updateQuantity(productId: string, quantity: number) {
-        this.cartService.updateQuantity(productId, quantity);
-    }
+  updateQuantity(productId: string, quantity: number) {
+    this.cartService.updateQuantity(productId, quantity);
+  }
 
-    removeItem(productId: string) {
-        this.cartService.removeFromCart(productId);
-    }
+  removeItem(productId: string) {
+    this.cartService.removeFromCart(productId);
+  }
 
-    goToMenu() {
-        this.router.navigate(['/client/menu']);
-    }
+  goToMenu() {
+    this.router.navigate(['/client/menu']);
+  }
 
-    checkout() {
-        // In a real app, this would collect table number etc.
-        // For now, we'll create a simple order
-        const items = [];
-        // We need to subscribe to get current items or assume we have them
-        // Since we are using the service, let's just use a simple approach
-        // Ideally we should get the items from the service synchronously or via subscription
-        // But for this demo, let's assume valid state
+  checkout() {
+    const cartItems = this.cartService['cartItemsSubject'].value;
+    if (cartItems.length === 0) return;
 
-        // Note: This is a simplified checkout. 
-        // In a real scenario we would need to map CartItems to OrderItems properly
-        // and handle the observable.
+    const orderItems = cartItems.map(item => ({
+      productId: item.product.id,
+      productName: item.product.name,
+      quantity: item.quantity,
+      unitPrice: item.product.price,
+      subtotal: item.product.price * item.quantity
+    }));
 
-        alert('Commande envoyée ! (Simulation)');
+    const orderData = {
+      type: OrderType.TAKEAWAY,
+      items: orderItems
+    };
+
+    this.orderService.createOrder(orderData).subscribe({
+      next: (order) => {
+        alert(`Commande envoyée avec succès !\nVotre numéro de commande est : ${order.orderNumber}`);
         this.cartService.clearCart();
         this.router.navigate(['/client/menu']);
-    }
+      },
+      error: (error) => {
+        console.error('Error creating order:', error);
+        alert('Une erreur est survenue lors de la commande. Veuillez réessayer.');
+      }
+    });
+  }
 }

@@ -5,10 +5,10 @@ import { CartService } from '../../../core/services/cart.service';
 import { Product, ProductCategory } from '../../../models/product.model';
 
 @Component({
-    selector: 'app-client-menu',
-    standalone: true,
-    imports: [CommonModule],
-    template: `
+  selector: 'app-client-menu',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
     <div class="menu-container">
       <div class="categories">
         <button 
@@ -56,7 +56,7 @@ import { Product, ProductCategory } from '../../../models/product.model';
       </div>
     </div>
   `,
-    styles: [`
+  styles: [`
     .menu-container {
       padding: 1rem 0;
     }
@@ -158,33 +158,33 @@ import { Product, ProductCategory } from '../../../models/product.model';
   `]
 })
 export class ClientMenuComponent implements OnInit {
-    products: Product[] = [];
-    filteredProducts: Product[] = [];
-    selectedCategory: string = 'all';
-    Category = ProductCategory;
+  products: Product[] = [];
+  filteredProducts: Product[] = [];
+  selectedCategory: string = 'all';
+  Category = ProductCategory;
 
-    constructor(
-        private productService: ProductService,
-        private cartService: CartService
-    ) { }
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService
+  ) { }
 
-    ngOnInit() {
-        this.productService.getProducts().subscribe(products => {
-            this.products = products.filter(p => p.available);
-            this.filterCategory('all');
-        });
+  ngOnInit() {
+    this.productService.getProducts().subscribe(products => {
+      this.products = products.filter(p => p.available);
+      this.filterCategory('all');
+    });
+  }
+
+  filterCategory(category: string) {
+    this.selectedCategory = category;
+    if (category === 'all') {
+      this.filteredProducts = this.products;
+    } else {
+      this.filteredProducts = this.products.filter(p => p.category === category);
     }
+  }
 
-    filterCategory(category: string) {
-        this.selectedCategory = category;
-        if (category === 'all') {
-            this.filteredProducts = this.products;
-        } else {
-            this.filteredProducts = this.products.filter(p => p.category === category);
-        }
-    }
-
-    addToCart(product: Product) {
-        this.cartService.addToCart(product);
-    }
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+  }
 }

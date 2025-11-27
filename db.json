@@ -1,200 +1,259 @@
 {
-    "users": [
+  "users": [
+    {
+      "id": "user-admin-001",
+      "username": "admin",
+      "email": "admin@coffeemanager.com",
+      "password": "admin123",
+      "role": "admin",
+      "firstName": "Admin",
+      "lastName": "User",
+      "avatar": "",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "user-emp-001",
+      "username": "employee",
+      "email": "employee@coffeemanager.com",
+      "password": "emp123",
+      "role": "employee",
+      "firstName": "John",
+      "lastName": "Doe",
+      "avatar": "",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod-001",
+      "name": "Espresso",
+      "description": "Classic Italian espresso",
+      "price": 2.5,
+      "category": "coffee",
+      "imageUrl": "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=400",
+      "available": true,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "prod-002",
+      "name": "Cappuccino",
+      "description": "Espresso with steamed milk foam",
+      "price": 3.5,
+      "category": "coffee",
+      "imageUrl": "https://images.unsplash.com/photo-1534778101976-62847782c213?w=400",
+      "available": true,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "prod-003",
+      "name": "Latte",
+      "description": "Smooth espresso with steamed milk",
+      "price": 4,
+      "category": "coffee",
+      "imageUrl": "https://images.unsplash.com/photo-1561882468-9110e03e0f78?w=400",
+      "available": true,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "prod-004",
+      "name": "Croissant",
+      "description": "Freshly baked butter croissant",
+      "price": 3,
+      "category": "pastry",
+      "imageUrl": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400",
+      "available": true,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "prod-005",
+      "name": "Green Tea",
+      "description": "Premium green tea",
+      "price": 2,
+      "category": "tea",
+      "imageUrl": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400",
+      "available": true,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "order-1764276483897-9tus1cwp0",
+      "orderNumber": "20251127-853",
+      "type": "dine-in",
+      "tableNumber": 5,
+      "items": [
         {
-            "id": "user-admin-001",
-            "username": "admin",
-            "email": "admin@coffeemanager.com",
-            "password": "admin123",
-            "role": "admin",
-            "firstName": "Admin",
-            "lastName": "User",
-            "avatar": "",
-            "createdAt": "2025-01-01T00:00:00.000Z"
+          "productId": "prod-002",
+          "productName": "Cappuccino",
+          "quantity": 2,
+          "unitPrice": 3.5,
+          "subtotal": 7
         },
         {
-            "id": "user-emp-001",
-            "username": "employee",
-            "email": "employee@coffeemanager.com",
-            "password": "emp123",
-            "role": "employee",
-            "firstName": "John",
-            "lastName": "Doe",
-            "avatar": "",
-            "createdAt": "2025-01-01T00:00:00.000Z"
+          "productId": "prod-003",
+          "productName": "Latte",
+          "quantity": 2,
+          "unitPrice": 4,
+          "subtotal": 8
+        },
+        {
+          "productId": "prod-005",
+          "productName": "Green Tea",
+          "quantity": 1,
+          "unitPrice": 2,
+          "subtotal": 2
         }
-    ],
-    "products": [
+      ],
+      "subtotal": 17,
+      "tax": 1.7000000000000002,
+      "total": 18.7,
+      "status": "delivered",
+      "notes": "",
+      "createdBy": "user-emp-001",
+      "createdAt": "2025-11-27T20:48:03.897Z",
+      "updatedAt": "2025-11-27T22:04:00.449Z"
+    },
+    {
+      "id": "order-1764279003532-hxp3xgq8d",
+      "orderNumber": "20251127-802",
+      "type": "takeaway",
+      "items": [
         {
-            "id": "prod-001",
-            "name": "Espresso",
-            "description": "Classic Italian espresso",
-            "price": 2.5,
-            "category": "coffee",
-            "imageUrl": "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=400",
-            "available": true,
-            "createdAt": "2025-01-01T00:00:00.000Z",
-            "updatedAt": "2025-01-01T00:00:00.000Z"
-        },
-        {
-            "id": "prod-002",
-            "name": "Cappuccino",
-            "description": "Espresso with steamed milk foam",
-            "price": 3.5,
-            "category": "coffee",
-            "imageUrl": "https://images.unsplash.com/photo-1534778101976-62847782c213?w=400",
-            "available": true,
-            "createdAt": "2025-01-01T00:00:00.000Z",
-            "updatedAt": "2025-01-01T00:00:00.000Z"
-        },
-        {
-            "id": "prod-003",
-            "name": "Latte",
-            "description": "Smooth espresso with steamed milk",
-            "price": 4.0,
-            "category": "coffee",
-            "imageUrl": "https://images.unsplash.com/photo-1561882468-9110e03e0f78?w=400",
-            "available": true,
-            "createdAt": "2025-01-01T00:00:00.000Z",
-            "updatedAt": "2025-01-01T00:00:00.000Z"
-        },
-        {
-            "id": "prod-004",
-            "name": "Croissant",
-            "description": "Freshly baked butter croissant",
-            "price": 3.0,
-            "category": "pastry",
-            "imageUrl": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400",
-            "available": true,
-            "createdAt": "2025-01-01T00:00:00.000Z",
-            "updatedAt": "2025-01-01T00:00:00.000Z"
-        },
-        {
-            "id": "prod-005",
-            "name": "Green Tea",
-            "description": "Premium green tea",
-            "price": 2.0,
-            "category": "tea",
-            "imageUrl": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400",
-            "available": true,
-            "createdAt": "2025-01-01T00:00:00.000Z",
-            "updatedAt": "2025-01-01T00:00:00.000Z"
+          "productId": "prod-002",
+          "productName": "Cappuccino",
+          "quantity": 1,
+          "unitPrice": 3.5,
+          "subtotal": 3.5
         }
-    ],
-    "orders": [],
-    "employees": [
+      ],
+      "subtotal": 3.5,
+      "tax": 0.35000000000000003,
+      "total": 3.85,
+      "status": "delivered",
+      "createdBy": "user-emp-001",
+      "createdAt": "2025-11-27T21:30:03.532Z",
+      "updatedAt": "2025-11-27T21:33:44.926Z"
+    }
+  ],
+  "employees": [
+    {
+      "id": "emp-001",
+      "firstName": "Marie",
+      "lastName": "Dupont",
+      "email": "marie.dupont@coffeemanager.com",
+      "phone": "+33612345678",
+      "role": "barista",
+      "hireDate": "2024-01-15T00:00:00.000Z",
+      "salary": 2000,
+      "schedule": [
         {
-            "id": "emp-001",
-            "firstName": "Marie",
-            "lastName": "Dupont",
-            "email": "marie.dupont@coffeemanager.com",
-            "phone": "+33612345678",
-            "role": "barista",
-            "hireDate": "2024-01-15T00:00:00.000Z",
-            "salary": 2000,
-            "schedule": [
-                {
-                    "dayOfWeek": 1,
-                    "startTime": "08:00",
-                    "endTime": "16:00"
-                },
-                {
-                    "dayOfWeek": 2,
-                    "startTime": "08:00",
-                    "endTime": "16:00"
-                },
-                {
-                    "dayOfWeek": 3,
-                    "startTime": "08:00",
-                    "endTime": "16:00"
-                }
-            ],
-            "active": true
+          "dayOfWeek": 1,
+          "startTime": "08:00",
+          "endTime": "16:00"
         },
         {
-            "id": "emp-002",
-            "firstName": "Pierre",
-            "lastName": "Martin",
-            "email": "pierre.martin@coffeemanager.com",
-            "phone": "+33687654321",
-            "role": "server",
-            "hireDate": "2024-02-01T00:00:00.000Z",
-            "salary": 1800,
-            "schedule": [
-                {
-                    "dayOfWeek": 4,
-                    "startTime": "10:00",
-                    "endTime": "18:00"
-                },
-                {
-                    "dayOfWeek": 5,
-                    "startTime": "10:00",
-                    "endTime": "18:00"
-                },
-                {
-                    "dayOfWeek": 6,
-                    "startTime": "10:00",
-                    "endTime": "18:00"
-                }
-            ],
-            "active": true
-        }
-    ],
-    "timeEntries": [],
-    "inventory": [
-        {
-            "id": "inv-001",
-            "name": "Coffee Beans",
-            "description": "Arabica coffee beans",
-            "currentStock": 25,
-            "minStock": 10,
-            "unit": "kg",
-            "unitCost": 15.0,
-            "supplier": "Coffee Roasters Inc",
-            "lowStockAlert": false,
-            "createdAt": "2025-01-01T00:00:00.000Z",
-            "updatedAt": "2025-01-01T00:00:00.000Z"
+          "dayOfWeek": 2,
+          "startTime": "08:00",
+          "endTime": "16:00"
         },
         {
-            "id": "inv-002",
-            "name": "Milk",
-            "description": "Fresh whole milk",
-            "currentStock": 8,
-            "minStock": 10,
-            "unit": "liter",
-            "unitCost": 1.5,
-            "supplier": "Fresh Farm Dairy",
-            "lowStockAlert": true,
-            "createdAt": "2025-01-01T00:00:00.000Z",
-            "updatedAt": "2025-01-01T00:00:00.000Z"
+          "dayOfWeek": 3,
+          "startTime": "08:00",
+          "endTime": "16:00"
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": "emp-002",
+      "firstName": "Pierre",
+      "lastName": "Martin",
+      "email": "pierre.martin@coffeemanager.com",
+      "phone": "+33687654321",
+      "role": "server",
+      "hireDate": "2024-02-01T00:00:00.000Z",
+      "salary": 1800,
+      "schedule": [
+        {
+          "dayOfWeek": 4,
+          "startTime": "10:00",
+          "endTime": "18:00"
         },
         {
-            "id": "inv-003",
-            "name": "Sugar",
-            "description": "White granulated sugar",
-            "currentStock": 15,
-            "minStock": 5,
-            "unit": "kg",
-            "unitCost": 2.0,
-            "supplier": "Sweet Supply Co",
-            "lowStockAlert": false,
-            "createdAt": "2025-01-01T00:00:00.000Z",
-            "updatedAt": "2025-01-01T00:00:00.000Z"
-        }
-    ],
-    "stockMovements": [],
-    "loyaltyCards": [
+          "dayOfWeek": 5,
+          "startTime": "10:00",
+          "endTime": "18:00"
+        },
         {
-            "id": "loy-001",
-            "customerId": "cust-001",
-            "customerName": "Sophie Bernard",
-            "customerEmail": "sophie.bernard@email.com",
-            "customerPhone": "+33654321987",
-            "points": 45,
-            "totalSpent": 150.5,
-            "joinDate": "2024-10-15T00:00:00.000Z",
-            "lastVisit": "2025-01-20T00:00:00.000Z",
-            "tier": "bronze"
+          "dayOfWeek": 6,
+          "startTime": "10:00",
+          "endTime": "18:00"
         }
-    ],
-    "loyaltyTransactions": []
+      ],
+      "active": true
+    }
+  ],
+  "timeEntries": [],
+  "inventory": [
+    {
+      "id": "inv-001",
+      "name": "Coffee Beans",
+      "description": "Arabica coffee beans",
+      "currentStock": 25,
+      "minStock": 10,
+      "unit": "kg",
+      "unitCost": 15,
+      "supplier": "Coffee Roasters Inc",
+      "lowStockAlert": false,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "inv-002",
+      "name": "Milk",
+      "description": "Fresh whole milk",
+      "currentStock": 8,
+      "minStock": 10,
+      "unit": "liter",
+      "unitCost": 1.5,
+      "supplier": "Fresh Farm Dairy",
+      "lowStockAlert": true,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "inv-003",
+      "name": "Sugar",
+      "description": "White granulated sugar",
+      "currentStock": 15,
+      "minStock": 5,
+      "unit": "kg",
+      "unitCost": 2,
+      "supplier": "Sweet Supply Co",
+      "lowStockAlert": false,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  "stockMovements": [],
+  "loyaltyCards": [
+    {
+      "id": "loy-001",
+      "customerId": "cust-001",
+      "customerName": "Sophie Bernard",
+      "customerEmail": "sophie.bernard@email.com",
+      "customerPhone": "+33654321987",
+      "points": 45,
+      "totalSpent": 150.5,
+      "joinDate": "2024-10-15T00:00:00.000Z",
+      "lastVisit": "2025-01-20T00:00:00.000Z",
+      "tier": "bronze"
+    }
+  ],
+  "loyaltyTransactions": []
 }

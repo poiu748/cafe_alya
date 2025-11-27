@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ProductService } from '../../../core/services/product.service';
 import { Product } from '../../../models/product.model';
 import { ProductFormComponent } from '../product-form/product-form.component';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-product-list',
@@ -13,7 +14,9 @@ import { ProductFormComponent } from '../product-form/product-form.component';
     <div class="page">
       <header class="page-header">
         <h1>☕ Produits</h1>
-        <button class="btn btn-primary" (click)="onAddProduct()">+ Ajouter un produit</button>
+        @if (isAdmin) {
+          <button class="btn btn-primary" (click)="onAddProduct()">+ Ajouter un produit</button>
+        }
       </header>
 
       @if (products.length > 0) {
@@ -105,7 +108,14 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   showAddModal = false;
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService,
+    private authService: AuthService
+  ) { }
+
+  get isAdmin(): boolean {
+    return this.authService.isAdmin;
+  }
 
   ngOnInit(): void {
     this.loadProducts();

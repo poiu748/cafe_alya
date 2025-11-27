@@ -2,16 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoyaltyService } from '../../../core/services/loyalty.service';
 import { LoyaltyCard } from '../../../models/loyalty.model';
+import { LoyaltyFormComponent } from '../loyalty-form/loyalty-form.component';
 
 @Component({
-    selector: 'app-loyalty-list',
-    standalone: true,
-    imports: [CommonModule],
-    template: `
+  selector: 'app-loyalty-list',
+  standalone: true,
+  imports: [CommonModule, LoyaltyFormComponent],
+  template: `
     <div class="page">
       <header class="page-header">
         <h1>🎁 Programme de Fidélité</h1>
-        <button class="btn btn-primary">+ Nouvelle carte</button>
+        <button class="btn btn-primary" (click)="onAddCard()">+ Nouvelle carte</button>
       </header>
 
       @if (cards.length > 0) {
@@ -49,9 +50,13 @@ import { LoyaltyCard } from '../../../models/loyalty.model';
           <p>Aucune carte de fidélité enregistrée</p>
         </div>
       }
+
+      @if (showAddModal) {
+        <app-loyalty-form (close)="onCloseModal()" (save)="onCardSaved()"></app-loyalty-form>
+      }
     </div>
   `,
-    styles: [`
+  styles: [`
     .page {
       padding: 2rem;
     }
@@ -145,28 +150,45 @@ import { LoyaltyCard } from '../../../models/loyalty.model';
   `]
 })
 export class LoyaltyListComponent implements OnInit {
-    cards: LoyaltyCard[] = [];
+  cards: LoyaltyCard[] = [];
+  showAddModal = false;
 
-    constructor(private loyaltyService: LoyaltyService) { }
+  constructor(private loyaltyService: LoyaltyService) { }
 
-    ngOnInit(): void {
-        this.loyaltyService.getCards().subscribe({
-            next: (cards) => {
-                this.cards = cards;
-            },
-            error: (error) => {
-                console.error('Error loading loyalty cards:', error);
-            }
-        });
-    }
+  ngOnInit(): void {
+    this.loadCards();
+  }
 
-    getTierLabel(tier: string): string {
-        const labelMap: { [key: string]: string } = {
-            'bronze': '🥉 Bronze',
-            'silver': '🥈 Silver',
-            'gold': '🥇 Gold',
-            'platinum': '💎 Platinum'
-        };
-        return labelMap[tier] || tier;
-    }
+  loadCards(): void {
+    this.loyaltyService.getCards().subscribe({
+      next: (cards) => {
+        this.cards = cards;
+      },
+      error: (error) => {
+        console.error('Error loading loyalty cards:', error);
+      }
+    });
+  }
+
+  onAddCard(): void {
+    this.showAddModal = true;
+  }
+
+  onCloseModal(): void {
+    this.showAddModal = false;
+  }
+
+  onCardSaved(): void {
+    this.loadCards();
+  }
+
+  getTierLabel(tier: string): string {
+    const labelMap: { [key: string]: string } = {
+      'bronze': '🥉 Bronze',
+      'silver': '🥈 Silver',
+      'gold': '🥇 Gold',
+      'platinum': '💎 Platinum'
+    };
+    return labelMap[tier] || tier;
+  }
 }
